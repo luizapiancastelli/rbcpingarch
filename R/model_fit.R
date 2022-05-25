@@ -5,7 +5,6 @@
 #' @param A.diag boolean
 #' @param B.diag boolean
 fit_BCP_INGARCH = function(Y, A.diag = TRUE, B.diag = FALSE){
-
   inits = list();
   inits$omega = matrix(colMeans(Y), ncol = 1); inits$phi = 0;
 
