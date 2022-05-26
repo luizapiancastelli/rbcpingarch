@@ -9,9 +9,13 @@ fit_BCP_INGARCH(Y, A.diag = TRUE, B.diag = FALSE)
 \arguments{
 \item{Y}{integer matrix of bivariate count data.}
 
-\item{A.diag}{boolean}
+\item{A.diag}{boolean specifying if the A matrix should be diagonal. Defaults to TRUE.}
 
-\item{B.diag}{boolean}
+\item{B.diag}{boolean specifying if the B matrix should be diagonal. Defaults to TRUE.}
+}
+\value{
+Named list containing the parameter estimates $par, standard errors estimated from the hessian matrix $se,
+initial values used by the algorithm $initial_values, and value of optimized log-likelihood function.
 }
 \description{
 Fit a Bivariate Conditional Poisson INGARCH(1,1) model

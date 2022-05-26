@@ -7,9 +7,15 @@
 rBCPINGARCH(A, B, omega, phi, n)
 }
 \arguments{
-\item{A}{2x2 matrix of parameters}
+\item{A}{(2x2) matrix of parameters related to the previous conditional means.}
 
-\item{B}{2x2 matrix of parameters}
+\item{B}{(2x2) matrix of parameters related to the previous counts.}
+
+\item{omega}{Intercept vector of lenght 2.}
+
+\item{phi}{real-valued parameter on the covariance and variance of the second component.}
+
+\item{n}{integer specifying the process length.}
 }
 \description{
 Simulate a Bivariate Conditional Poisson INGARCH(1,1) process
