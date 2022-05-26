@@ -1,11 +1,11 @@
 #' Simulate a Bivariate Conditional Poisson INGARCH(1,1) process
 #'
 #' @export
-#' @param A 2x2 matrix of parameters
-#' @param B 2x2 matrix of parameters
-#' @param omega
-#' @param phi
-#' @param n
+#' @param A (2x2) matrix of parameters related to the previous conditional means.
+#' @param B (2x2) matrix of parameters related to the previous counts.
+#' @param omega Intercept vector of lenght 2. 
+#' @param phi real-valued parameter on the covariance and variance of the second component.
+#' @param n integer specifying the process length.
 rBCPINGARCH = function(A,B, omega, phi, n){
 
   burn_in = 300
