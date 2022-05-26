@@ -1,30 +1,47 @@
 ---
 title: "rbcpingarch"
 author: "Luiza Piancastelli"
-date: "5/26/2022"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(rbcpingarch)
+library(ggplot2)
 ```
 
-## R Markdown
+### Data simulation
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+```{r}
+A = matrix(c(0.3, 0, 0, 0.1), ncol =2, byrow = TRUE)
+B = matrix(c(0.2, 0, 0, 0.3), ncol =2, byrow = TRUE)
+omega = c(1,1)
+phi = 0.3
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+Y = rBCPINGARCH(A, B, omega, phi, 500)
+head(Y)
+cor(Y)
 
-```{r cars}
-summary(cars)
+Y_df = data.frame('y1' =Y[,1], 'y2' = Y[,2], 't' = 1:nrow(Y))
+ggplot(Y_df, aes(x = t))+
+  geom_line(aes(y = y1), color = 'red') +  geom_line(aes(y = y2), color = 'blue')+theme_bw()+
+  labs(y = 'Simulated count time series data', x = 'Time')
+
 ```
 
-## Including Plots
+### Model fit
 
-You can also embed plots, for example:
+```{r, echo=FALSE}
+data("Y_hep")
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+fit_diag = fit_BCP_INGARCH(Y_hep, A.diag = TRUE, B.diag = TRUE)
+fit_diag$par
+fit_diag$se
+fit_diag$loglik
+
+fit_nd = fit_BCP_INGARCH(Y_hep, A.diag = TRUE, B.diag = FALSE)
+fit_nd$par
+fit_nd$se
+fit_nd$loglik
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

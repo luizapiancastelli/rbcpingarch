@@ -3,10 +3,9 @@
 #' @export
 #' @param Y integer matrix of bivariate count data.
 #' @param A.diag boolean specifying if the A matrix should be diagonal. Defaults to TRUE.
-#' @param B.diag boolean specifying if the B matrix should be diagonal. Defaults to TRUE.
+#' @param B.diag boolean specifying if the B matrix should be diagonal. Defaults to FALSE.
 #' @return Named list containing the parameter estimates $par, standard errors estimated from the hessian matrix $se,
 #' initial values used by the algorithm $initial_values, and value of optimized log-likelihood function.
-
 fit_BCP_INGARCH = function(Y, A.diag = TRUE, B.diag = FALSE){
   inits = list();
   inits$omega = matrix(colMeans(Y), ncol = 1); inits$phi = 0;
