@@ -54,7 +54,7 @@ ggplot(Y_df, aes(x = t, y = count, color = serie))+
 
 In what follows, the function `fit_BCP_INGARCH` is used for conditional maximum likelihood estimation of the model parameters for the bivariate count time series data of viral hepatites cases in the Brazilian cities Goiania and Brasilia. This data set is available in `rbcpingarch` via a call to `data("Y_hep")`, originally collected from the  [DATASUS platform](https://datasus.saude.gov.br). This function takes as arguments the observed data and specification of `A` and `B` matrices as diagonal or non-diagonal, which relates to the between series INGARCH parameters.
 
-```{r, echo=FALSE}
+```{r}
 data("Y_hep") #Loads the Brazilian hepatites count data set
 
 fit_diag = fit_BCP_INGARCH(Y_hep, A.diag = TRUE, B.diag = TRUE) 

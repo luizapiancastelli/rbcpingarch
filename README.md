@@ -1,4 +1,3 @@
-Luiza Piancastelli <luiza.piancastelli@ucdconnect.ie>
 
 `rbcpingarch` is an R package providing code to simulate and fit the
 Bivariate Conditional Poisson INGARCH(1,1) process proposed in
@@ -29,16 +28,16 @@ n = 500  #Time series length
 Y = rBCPINGARCH(A, B, omega, phi, n)
 head(Y)
 #>      [,1] [,2]
-#> [1,]    0    1
-#> [2,]    1    0
-#> [3,]    4    1
-#> [4,]    2    2
-#> [5,]    3    0
-#> [6,]    2    0
+#> [1,]    3    0
+#> [2,]    8    8
+#> [3,]    6    2
+#> [4,]    7    3
+#> [5,]    5    2
+#> [6,]    2    1
 cor(Y)
 #>           [,1]      [,2]
-#> [1,] 1.0000000 0.5855228
-#> [2,] 0.5855228 1.0000000
+#> [1,] 1.0000000 0.6269097
+#> [2,] 0.6269097 1.0000000
 
 Y_df = data.frame('y1' =Y[,1], 'y2' = Y[,2], 't' = 1:nrow(Y))
 Y_df = pivot_longer(Y_df, cols = starts_with('y'), names_to = 'serie', values_to = 'count')
