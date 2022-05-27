@@ -11,7 +11,7 @@ fit_BCP_INGARCH(Y, A.diag = TRUE, B.diag = FALSE)
 
 \item{A.diag}{boolean specifying if the A matrix should be diagonal. Defaults to TRUE.}
 
-\item{B.diag}{boolean specifying if the B matrix should be diagonal. Defaults to TRUE.}
+\item{B.diag}{boolean specifying if the B matrix should be diagonal. Defaults to FALSE.}
 }
 \value{
 Named list containing the parameter estimates $par, standard errors estimated from the hessian matrix $se,
