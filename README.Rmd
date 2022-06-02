@@ -32,7 +32,7 @@ The next chunk of code exemplifies using the `rBCPINGARCH` for simulating a real
 
 The output of `rBCPINGARCH` is a (`n`x 2) integer matrix, with one realisation illustrated in the code below. 
 
-```{r, fig.width=6, fig.height=4}
+```{r, fig.width=9, fig.height=6}
 A = diag(c(0.3, 0.1)) #Diagonal (2x2) matrix
 B = diag(c(0.2, 0.3)) #Diagonal (2x2) matrix, can be non diagonal as long as stationarity conditions satisfied
 omega = c(2,1) 
@@ -74,7 +74,7 @@ fit_nd$loglik
 
 The output is a named list containing the estimated model parameters `fit$par`, their asymptotic standard  errors `fit$se`, maximed log-likelihood value `fit$loglik`, the fitted process `fit$lambda`, and the initial values used by the algorithm `fit$initial_values`, among others.
 
-Selecting between the nested diagonal and non-diagonal model fits can be done via information criterian with the `model_information` function. This returns the AIC and BIC of the alternative models, both indicating the diagonal case for the hepatites count data.
+Selecting between the nested diagonal and non-diagonal model fits can be done via information criterion with the `model_information` function. This returns the AIC and BIC of the alternative models, both indicating the diagonal case for the hepatites count data.
 
 ```{r}
 model_information(fit_diag)

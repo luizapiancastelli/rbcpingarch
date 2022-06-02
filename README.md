@@ -38,16 +38,16 @@ n = 500  #Time series length
 Y = rBCPINGARCH(A, B, omega, phi, n)
 head(Y)
 #>      [,1] [,2]
-#> [1,]    3    0
-#> [2,]    4    0
-#> [3,]    2    0
-#> [4,]    5    2
-#> [5,]    3    1
-#> [6,]    3    0
+#> [1,]    5    1
+#> [2,]    2    1
+#> [3,]    3    0
+#> [4,]    4    0
+#> [5,]    1    0
+#> [6,]    4    4
 cor(Y)
 #>           [,1]      [,2]
-#> [1,] 1.0000000 0.6357407
-#> [2,] 0.6357407 1.0000000
+#> [1,] 1.0000000 0.6239631
+#> [2,] 0.6239631 1.0000000
 
 Y_df= data.frame('y1' =Y[,1], 'y2' = Y[,2], 't' = 1:nrow(Y))
 Y_df = pivot_longer(Y_df, cols = starts_with('y'), names_to = 'serie', values_to = 'count')
@@ -117,15 +117,15 @@ the initial values used by the algorithm `fit$initial_values`, among
 others.
 
 Selecting between the nested diagonal and non-diagonal model fits can be
-done via information criterian with the `model_information` function.
+done via information criterion with the `model_information` function.
 This returns the AIC and BIC of the alternative models, both indicating
 the diagonal case for the hepatites count data.
 
 ``` r
 model_information(fit_diag)
 #>       AIC       BIC 
-#> -92220.83 -92203.96
+#> -92216.83 -92193.21
 model_information(fit_nd)
 #>       AIC       BIC 
-#> -92220.44 -92196.81
+#> -92216.44 -92186.06
 ```
