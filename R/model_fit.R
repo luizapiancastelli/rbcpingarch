@@ -38,7 +38,6 @@ fit_BCP_INGARCH = function(Y, A.diag = TRUE, B.diag = FALSE){
 
   } else if(A.diag == FALSE & B.diag == FALSE){
 
-    model = stan_model(model_code = model_full)
     inits$A = inits$B = matrix(rep(0.1,4),ncol = 2)
     op = rstan::optimizing(stanmodels$modelfull, data = list(Y = Y, n = nrow(Y),med_y1 = median(Y[,1]), med_y2 = median(Y[,2])),verbose = FALSE,init = inits)
     par = op$par;
@@ -62,6 +61,7 @@ fit_BCP_INGARCH = function(Y, A.diag = TRUE, B.diag = FALSE){
   output$se = ses
   output$lambda= matrix(lambda, ncol = 2)
   output$initial_values = inits
+  output$A.diag = A.diag;
   output$B.diag = B.diag;
   output$loglik = op$value
   return(output)
@@ -103,5 +103,25 @@ loglik_BCP_INGARCH = function(params, Y, A.diag, B.diag){
   loglik = loglik +  phi*sum(y1*y2)
   names(loglik) = NULL
   return(loglik)
+}
+
+
+#' Model information criteria for BCP-INGARCH(1,1) fits.
+#'
+#' @param fit fitted model obtained with the function fit_BCP_INGARCH. 
+#' @return AIC anc BIC of fitted models.
+#' @export
+model_information = function(fit){
+  
+  params_A = ifelse(fit$A.diag,2,4)
+  params_B = ifelse(fit$B.diag,2,4)
+  k = params_A + params_B + 3
+  n = nrow(fit$lambda)
+  aic = 2*k - 2*fit$loglik
+  bic = k*log(n)- 2*fit$loglik
+  
+  criteria = c(aic, bic)
+  names(criteria) = c("AIC", "BIC")
+  return(criteria)
 }
 
